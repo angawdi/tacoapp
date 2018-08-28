@@ -12,10 +12,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public/'));
 
 // Add route to root path here
-
+app.get('/', function(req, res) {
+	res.render('index');
+})
 
 // Add route to /tacos here
-
+app.use('/tacos', require('./controllers/tacos'));
 
 var server = app.listen(3000);
 
