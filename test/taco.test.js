@@ -34,6 +34,22 @@ describe('POST /tacos', function() {
 		})
 })
 
+// PUT /tacos/:id
+describe('PUT /tacos/:id', function() {
+	it('should update the name and amount of a taco', function(done) {
+		request(app).put('/tacos/1')
+		.type('form')
+		.send({
+			name: 'al pastor',
+			amount: 10
+		})
+		.end(function(err, response) {
+			expect(response.statusCode).to.equal(200);
+			done();
+		})
+	});
+});
+
 // DELETE /tacos/:id
 describe('DELETE /tacos/:id', function() {
 	it('should delete taco from database and return a 200 response', function(done) {

@@ -21,7 +21,19 @@ router.get('/', function(req, res) {
 
 
 // PUT /:id
-
+router.put('/:id', function(req, res) {
+  db.taco.findById(req.params.id).then(function(taco) {
+    if (taco) {
+      taco.updateAttributes(req.body).then(function() {
+        res.status(200).send({msg: 'success'});
+      });
+    } else {
+      res.status(404).send({msg: 'error'});
+    }
+  }).catch(function(err) {
+    res.status(500).send({msg: 'error'});
+  });
+});
 
 // DELETE /:id
 router.delete('/:id', function(req, res) {
