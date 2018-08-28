@@ -43,8 +43,22 @@ describe('DELETE /tacos/:id', function() {
 			expect(response.body).to.have.property('msg');
 			expect(response.body.msg).to.equal('success');
 			done();
-		})
-	})
-})
+		});
+	});
+
+	it('should not be able to delete a non-existent taco', function(done) {
+    request(app).delete('/tacos/1')
+    .end(function(err, response) {
+      expect(response.statusCode).to.not.equal(200);
+      expect(response.body).to.have.property('msg');
+      expect(response.body.msg).to.equal('error');
+      done();
+    });
+  });
+
+
+});
+
+
 
 
