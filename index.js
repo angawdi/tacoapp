@@ -11,11 +11,11 @@ app.use(ejsLayouts);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public/'));
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
+// Add route to root path here
 
-app.use('/tacos', require('./controllers/tacos'));
+
+// Add route to /tacos here
+
 
 var server = app.listen(3000);
 
