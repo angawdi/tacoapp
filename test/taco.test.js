@@ -19,7 +19,7 @@ describe('GET /tacos', function() {
 	})
 })
 
-// POST .tacos
+// POST /tacos
 describe('POST /tacos', function() {
 	it('should create a taco and redirect to /tacos after posting a valid taco',
 		function(done){
@@ -33,3 +33,18 @@ describe('POST /tacos', function() {
 			.expect(302, done);
 		})
 })
+
+// DELETE /tacos/:id
+describe('DELETE /tacos/:id', function() {
+	it('should delete taco from database and return a 200 response', function(done) {
+		request(app).delete('/tacos/1')
+		.end(function(err, response) {
+			expect(response.statusCode).to.equal(200);
+			expect(response.body).to.have.property('msg');
+			expect(response.body.msg).to.equal('success');
+			done();
+		})
+	})
+})
+
+
